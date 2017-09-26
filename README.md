@@ -9,4 +9,4 @@
 - Then Regular users could verify which work is better implemented using market of predictions by voting for the solution. 
 - After verification every participant user receive a FreePenny that is being generated using Proof-of-Commit algorithm.
 - Regular Users who has voted for Solution that had been selected by the majority receives ether of the other parties.
-- Users can exchange Ether, FreePenny and potentially any other coins or fiat money using the peer-to-peer exchange system.
+- Users can exchange Ether, FreePenny and potentially any other coins or fiat money using the p2p exchanger algorithm.
