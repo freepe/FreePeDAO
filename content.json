@@ -1,0 +1,46 @@
+{
+ "address": "1Jab2hNEBeeygU22teBNzW7bw1gz3ZNWwB",
+ "address_index": 75663266,
+ "background-color": "#FFF",
+ "clone_root": "template-new",
+ "cloned_from": "1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D",
+ "description": "",
+ "files": {
+  "1Jab2hNEBeeygU22teBNzW7bw1gz3ZNWwB.zip": {
+   "sha512": "07957796969329efef49160658200be4891f2c4ddcc25b711994be7335770a1d",
+   "size": 62628
+  },
+  "css/bootstrap.min.css": {
+   "sha512": "e8c5daf01eae68ed7c1e277a6e544c7ad108a0fa877fb531d6d9f2210769b7da",
+   "size": 121200
+  },
+  "index.html": {
+   "sha512": "fff3a1c6f9647b5a806387f84561e1dc9949f5e63413350f99a6fcace9cd66dd",
+   "size": 9087
+  },
+  "js/ZeroFrame.js": {
+   "sha512": "8bc18006f7bb457cca2338239ea345bc1db54a664b4bc9b8a34f4e4133d1776b",
+   "size": 3816
+  },
+  "js/bootstrap.min.js": {
+   "sha512": "8b3b64a1bb2f9e329f02d4cd7479065630184ebaed942ee61a9ff9e1ce34c28c",
+   "size": 37045
+  },
+  "js/web3.min.js": {
+   "sha512": "d02b12337895518c298d125fcffa7b5f9ba4f6c963314ebeb95c40fee644424d",
+   "size": 140790
+  }
+ },
+ "ignore": "",
+ "inner_path": "content.json",
+ "modified": 1506264579,
+ "postmessage_nonce_security": true,
+ "signers_sign": "Gxj9DdoCw9q/O1Z3uoiiDmJv8P861BgIcFZud4XcF1IkRLT/RVrwiybquw18t8Q+d+HRK6jKp0tVDKP9JFSzCWQ=",
+ "signs": {
+  "1Jab2hNEBeeygU22teBNzW7bw1gz3ZNWwB": "G951Mk+/QIMrDJnVwPs3UJV45AA0lI1W+MlWIiIIiCqiDuUnxO10ziO4rwT+ttv5/Hzu6i0nKKJmwouNgqwy9Hk="
+ },
+ "signs_required": 1,
+ "title": "FreePe Hackathon",
+ "translate": ["js/all.js"],
+ "zeronet_version": "0.5.6"
+}

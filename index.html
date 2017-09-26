@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+ <title>FreePe - Decentralized Socio-Economic Network</title>
+ <meta charset="utf-8">
+ <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <base href="" target="_top" id="base">
+ <script>base.href = document.location.href.replace("/media", "").replace("index.html", "").replace(/[&?]wrapper=False/, "").replace(/[&?]wrapper_nonce=[A-Za-z0-9]+/, "")</script>
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<script type="text/javascript" src="js/web3.min.js"></script>
+<script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<div class="container">
+	<div class="header">
+		<h1>FreePe - Decentralized Socio-Economic Network</h1>
+	</div>
+	<div class="row">
+		<h3>Have a new task to develop?</h3>
+		<div class="col-md-8">Press a button and you can submit new task</div>
+		<div class="col-md-4"><button class="btn btn-default" data-toggle="modal" data-target="#modalTask">New task</button></div>
+	</div>
+	<div class="row">
+		<h3>Have a talent to develop a task?</h3>
+		<div class="col-md-8">Press a button and you can view all tasks</div>
+		<div class="col-md-4"><button class="btn btn-default" onclick="Javascript:addTable()">View tasks</button></div>
+		<div id="metric_results">
+			<table id="table" class="table table-striped">
+				<tbody id="tbody">
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!-- Button trigger modal -->
+<script>
+	var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+	var accounts = web3.eth.accounts;
+	var account = accounts[0];
+	// var balanceWei = web3.eth.getBalance(account).toNumber();
+	// var balance = web3.fromWei(balanceWei, 'ether');
+	// var number = web3.eth.blockNumber;
+	// console.log(number+' '+balance+' '+balanceWei);
+	var abi = [{"constant":true,"inputs":[],"name":"count","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"desc","type":"string"},{"name":"cat","type":"string"},{"name":"budget","type":"uint256"},{"name":"due","type":"uint256"}],"name":"newTask","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"taskIds","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"workId","type":"uint256"},{"name":"parentTaskId","type":"uint256"}],"name":"newExpertise","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"tasks","outputs":[{"name":"id","type":"uint256"},{"name":"description","type":"string"},{"name":"category","type":"string"},{"name":"state","type":"uint8"},{"name":"creationTime","type":"uint256"},{"name":"budget","type":"uint256"},{"name":"due","type":"uint256"},{"name":"sender","type":"address"},{"name":"parentId","type":"uint256"},{"name":"isExist","type":"bool"},{"name":"expertiseWorkId","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"isExist","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint256"}],"name":"getExpertiseId","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[{"name":"_work","type":"address"}],"payable":false,"type":"constructor"}]
+	var MyContract = web3.eth.contract(abi);
+	// // initiate contract for an address
+	var myContractInstance = MyContract.at('0x6ede0ed3a9d0252092e92009852d39c8e93c5e9f');
+		
+function createTask() {
+	var description = document.getElementById("description").value
+	var category = document.getElementById("category").value
+	var budget = +document.getElementById("budget").value
+	var duedate = +document.getElementById("duedate").value
+	myContractInstance.newTask(description,category,budget,duedate, {
+		from: account,
+		gas: 1000000
+	})
+
+}
+
+
+function addTable() {
+    var myTableDiv = document.getElementById("metric_results")
+    var table = document.getElementById('table')
+    var tableBody = document.getElementById('tbody')
+	
+	tableBody.innerHTML = "";
+
+    table.border = '1'
+    table.appendChild(tableBody);
+
+    var heading = new Array();
+    heading[0] = "Description"
+    heading[1] = "Category"
+    heading[2] = "Budget"
+    heading[3] = "Due date"
+
+	// // call constant function
+	var l = +myContractInstance.count();
+	var promises = []
+
+	if (l > 0) {
+		for (var i = 0; i < l; i++ ){
+		promises.push(myContractInstance.taskIds(i))
+		}  
+	}
+
+	Promise.all(promises).then(stockR => {
+		var tasss = []
+
+		for (var i = 0; i < stockR.length; i++ ){
+			tasss.push(myContractInstance.tasks(stockR[i].c[0]))
+		}  
+
+		Promise.all(tasss).then(tasks => {
+			console.log(tasks)
+			var stock = tasks.map(task => new Array(task[1], task[2],task[3] , +task[6]));
+
+			// TABLE COLUMNS
+			var tr = document.createElement('TR');
+			tableBody.appendChild(tr);
+			for (i = 0; i < heading.length; i++) {
+				var th = document.createElement('TH')
+				th.appendChild(document.createTextNode(heading[i]));
+				tr.appendChild(th);
+			}
+
+			//TABLE ROWS
+			for (i = 0; i < stock.length; i++) {
+				var tr = document.createElement('TR');
+				for (j = 0; j < stock[i].length; j++) {
+					var td = document.createElement('TD')
+					td.appendChild(document.createTextNode(stock[i][j]));
+					tr.appendChild(td)
+				}
+				tableBody.appendChild(tr);
+			}  
+			myTableDiv.appendChild(table)
+		})
+	})
+}
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="modalTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="myModalLabel">Create new task</h4>
+	</div>
+	<div class="modal-body">
+			<textarea class="form-control" id="description" rows="3" placeholder="Task description"></textarea><br>
+			<input type="text" id="category" class="form-control" placeholder="Task category"><br>
+			<input type="text" id="budget" class="form-control" placeholder="Budget"><br>
+			<input type="text" id="duedate" class="form-control" placeholder="Due date">
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="createTask()">Save changes</button>
+	</div>
+	</div>
+</div>
+</div>
+</body>
+</html>
