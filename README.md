@@ -11,3 +11,4 @@
 - Regular Users who has voted for Solution that had been selected by the majority receives ether of the other parties.
 - Users can exchange Ether, FreePenny and potentially any other coins or fiat money using the P2P Exchanger algorithm.
 - Users can start crowdfunding, cashback systems or organize a fund to create the goals with controlling of commitment.
+- FreePe takes a 1% from all of the commercial tasks and then distribute profit among the holders of the FreePenny.
