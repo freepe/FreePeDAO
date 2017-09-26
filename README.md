@@ -8,4 +8,4 @@
 - Expert user can audit the tasks in their area and examine the total cost with notation of total cost of the work performed. 
 - Then Regular users could verify which work is better implemented using market of predictions by voting for the solution. 
 - After verification every participant user receive a FreePenny that is being generated using Proof-of-Commit algorithm.
-- Regular Users who has voted for Solution that had been selected by the majority receives ether of the parties who have lost.
+- Regular Users who has voted for Solution that had been selected by the majority receives ether of the other parties.
