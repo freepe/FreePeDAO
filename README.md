@@ -17,7 +17,7 @@
 - The ability to create a task with description, category, budget and due date.
 - The ability to view a list of all tasks.
 
-**Preparation**
+#### Configuration
 1. Install and launch TestRPC or connect to the TestNet.
 2. Go to http://remix.ethereum.org, compile and run the contract Work.
 3. Receive the address of new created contract Task by calling the task function.
