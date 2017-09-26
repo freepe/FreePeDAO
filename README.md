@@ -12,3 +12,12 @@
 - Users can exchange Ether, FreePenny and potentially any other coins or fiat money using the P2P Exchanger algorithm.
 - Users can start crowdfunding, cashback systems or organize a fund to create the goals with controlling of commitment.
 - FreePe takes a 1% from all of the commercial tasks and then distribute profit among the holders of the FreePenny.
+
+##### Current version 0.0.1a
+- The ability to create a task with description, category, budget and due date.
+- The ability to view a list of all tasks.
+**Preparation**
+1. Install and launch TestRPC or connect to the TestNet.
+2. Go to http://remix.ethereum.org, compile and run the contract Work.
+3. Receive the address of new created contract Task by calling the task function.
+4. Configure the connection to Ethereum node and address of the contract in index file.
