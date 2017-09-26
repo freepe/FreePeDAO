@@ -17,8 +17,8 @@
 - The ability to create a task with description, category, budget and due date.
 - The ability to view a list of all tasks.
 
-#### Configuration
-1. Install and launch TestRPC or use the public TestNet and MetaMask for wallet creation.
+#### Basic configuration
+1. Install and launch TestRPC - https://github.com/ethereumjs/testrpc.
 2. Go to http://remix.ethereum.org, paste the freepe.sol, compile and run the contract Work.
 3. Receive the address of new created contract Task by calling the task function.
-4. Configure the connection to Ethereum node and address of the contract in index file.
+4. Configure the address of the contract in index file.
