@@ -18,7 +18,7 @@
 - The ability to view a list of all tasks.
 
 #### Configuration
-1. Install and launch TestRPC or connect to the TestNet.
-2. Go to http://remix.ethereum.org, compile and run the contract Work.
+1. Install and launch TestRPC or use the public TestNet and MetaMask for wallet creation.
+2. Go to http://remix.ethereum.org, paste the freepe.sol, compile and run the contract Work.
 3. Receive the address of new created contract Task by calling the task function.
 4. Configure the connection to Ethereum node and address of the contract in index file.
